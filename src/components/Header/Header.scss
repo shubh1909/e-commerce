@@ -7,7 +7,6 @@
     color: white;
     border-bottom: 1px solid black;
     z-index: 99;
-     
     @include md{
         padding: 0 40px ;
     }
@@ -86,8 +85,7 @@
         animation: stickyHeader 0.3s ease forwards;
     }
 }
-
-@keyframes srickyHeader{
+@keyframes stickyHeader{
     0%{ transform: translateY(-80%);}
     100%{transform: translateY(0);}
 }
