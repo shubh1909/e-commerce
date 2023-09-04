@@ -2,9 +2,13 @@ import { useEffect, useState } from "react";
 import { AiOutlineHeart } from "react-icons/ai";
 import { CgShoppingCart } from "react-icons/cg";
 import { TbSearch } from "react-icons/tb";
+import Cart from "../Cart/Cart";
 import "./Header.scss";
+import Search from "./Search/Search";
 const Header = () => {
-  const[scrolled, setScrolled]=useState(false);
+  const[scrolled, setScrolled]=useState(false); //sticky header
+  const[showCart,setShowCart]=useState(false); //show cart functionality
+  const[showSearch,setShowSearch]=useState(false); //search functionality state
   const handleScroll = () => {
     const offset = window.scrollY;
     if (offset>200) {
@@ -17,6 +21,7 @@ const Header = () => {
     window.addEventListener("scroll", handleScroll);
   }, []);
   return (
+    <>
     <header className={`main-header  ${scrolled ? "sticky-header": ""}`}>
       <div className="header-content">
         <ul className="left">
@@ -26,9 +31,9 @@ const Header = () => {
         </ul>
         <div className="center">KALAKAAR</div>
         <div className="right">
-          <TbSearch />
+          <TbSearch onClick={()=>setShowSearch(true)} />
           <span className="cart-icon">
-            <CgShoppingCart />
+            <CgShoppingCart  onClick={()=>setShowCart(true)}/>
             <span>1</span>
           </span>
 
@@ -36,6 +41,9 @@ const Header = () => {
         </div>
       </div>
     </header>
+    {showCart && <Cart setShowCart={setShowCart}/>}
+    {showSearch && <Search setShowSearch={setShowSearch} />}
+    </>
   );
 };
 
